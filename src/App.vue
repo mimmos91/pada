@@ -24,7 +24,7 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
       <router-view />
     </div>
-    <login />
+
   </main>
 </template>
 
