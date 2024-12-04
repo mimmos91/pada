@@ -1,40 +1,19 @@
 <!-- <script setup></script> -->
 
 <template>
-  로그인
+  <!-- 공통 AppBar -->
   <div>
-    <!-- 공통 AppBar -->
-    <div
-      class="app-bar bg-blue-500 text-white shadow-md px-4 py-2 flex justify-between items-center"
-    >
-      <div class="text-xl font-semibold">PADA (Posco Automated Data Analysis) 🧐</div>
-      <div class="flex space-x-4">
-        <router-link to="/" class="hover:bg-blue-600 rounded px-3 py-1 transition">홈</router-link>
-        <router-link
-          v-if="!isAuthenticated"
-          to="/login"
-          class="hover:bg-blue-600 rounded px-3 py-1 transition"
-          >로그인</router-link
-        >
-        <router-link
-          v-if="!isAuthenticated"
-          to="/register"
-          class="hover:bg-blue-600 rounded px-3 py-1 transition"
-          >회원가입</router-link
-        >
-        <button
-          v-if="isAuthenticated"
-          @click="showLogoutModal"
-          class="hover:bg-blue-600 rounded px-3 py-1 transition"
-        >
-          로그아웃
-        </button>
-        <router-link
-          v-if="isAuthenticated"
-          to="/user-info"
-          class="hover:bg-blue-600 rounded px-3 py-1 transition"
-          >유저정보</router-link
-        >
+    <div class="login-container">
+      <img src="../assets/logo.png" alt="PADA Logo" />
+      <input type="text" placeholder="아이디" />
+      <input type="password" placeholder="비밀번호" />
+      <button>로그인</button>
+      <div class="text">
+        <p>* 시스템 문의: 광양 도금부 기술개발섹션 박현준 (mechpark@posco.com)</p>
+        <p>
+          PADA 시스템 사용이 필요하신 경우: 시스템 문의처로 사유와 함께 메일주시면 검토 후
+          회신드리겠습니다.
+        </p>
       </div>
     </div>
   </div>
@@ -71,7 +50,68 @@ h3 {
 @media (min-width: 1024px) {
   .greetings h1,
   .greetings h3 {
-    text-align: left;
+    text-align: center;
   }
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300vh;
+  margin: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.login-container {
+  width: 400px;
+  height: 600px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+.login-container img {
+  width: 150px;
+  padding-bottom: 30px;
+  margin: auto;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #c7d4f1;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #a8bce1;
+}
+
+.login-container .text {
+  width: 100%;
+  margin: 20px 0;
+  text-align: start;
+  text-size-adjust: unset;
+}
+
+.text p {
+  padding: 3px;
 }
 </style>
