@@ -2,10 +2,10 @@
 
 #app {
   display: block;
-  place-items: start center;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  place-items: center;
+  /* max-width: 1280px; */
+  margin: 0;
+  padding: 2rem 0;
   font-weight: normal;
 }
 
@@ -25,13 +25,13 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: start center;
+    display: block;
+    place-items: unset;
   }
 
   #app {
     display: block;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     padding: 3rem;
   }
 }

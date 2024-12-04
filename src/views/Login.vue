@@ -3,10 +3,10 @@
 <template>
   <!-- 공통 AppBar -->
   <div>
-    <div class="login-container">
+    <div style="place-items: center" class="login-container">
       <img src="../assets/logo.png" alt="PADA Logo" />
-      <input type="text" placeholder="아이디" />
-      <input type="password" placeholder="비밀번호" />
+      <input type="text" v-model="id" placeholder="아이디" />
+      <input type="password" v-model="pwd" placeholder="비밀번호" />
       <button>로그인</button>
       <div class="text">
         <p>* 시스템 문의: 광양 도금부 기술개발섹션 박현준 (mechpark@posco.com)</p>
@@ -20,17 +20,47 @@
 </template>
 
 <script>
+import { useAuthStore } from '@/jsfiles/auth'
+
 export default {
   name: 'Login',
   data() {
-    return {}
+    return {
+      id: '',
+      pwd: '',
+    }
   },
-  methods: {},
+  methods: {
+    async login() {
+      const authStore = useAuthStore()
+      try {
+        // const response = await axios.post('')
+        const submit = async () => {
+          await authStore.login({ email: this.id, password: this.pwd })
+
+          if (Response.data.success) {
+            this.$router.push({
+              name: 'PADA',
+              params: { userInfo: Response.data.user },
+            })
+          } else {
+            alert('아이디나 비밀번호를 확인하십시오.')
+          }
+        }
+      } catch (error) {
+        console.error(error)
+        alert('로그인 중 오류가 발생하였습니다.')
+      }
+    },
+  },
   components: {},
 }
 </script>
 
 <style scoped>
+#app {
+  margin: auto;
+}
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
