@@ -1,123 +1,3 @@
-<template>
-  <!-- upper-->
-  <div class="upper">
-    <img src="../assets/logo.png" alt="PADA Logo" />
-
-    <div class="profile">
-      <!-- <img src="profile.png" alt="Profile" /> -->
-      <p>김유경(107032)</p>
-    </div>
-  </div>
-  <div class="containerP">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <h2>MENU</h2>
-      <div class="menu-item">
-        <h2>조회 지역선택</h2>
-        <label>
-          <input
-            type="radio"
-            name="location"
-            value="포항"
-            v-model="location"
-            @change="logSelection"
-          />포항제철소
-        </label>
-        <br />
-        <label>
-          <input
-            type="radio"
-            name="location"
-            value="광양"
-            v-model="location"
-            @change="logSelection"
-          />광양제철소
-        </label>
-      </div>
-      <div class="menu-item">
-        <h2>지난 데이터</h2>
-        <ul>
-          <li>2024년 11월 19일</li>
-          <li>2024년 11월 7일</li>
-          <li>2024년 10월 28일</li>
-        </ul>
-      </div>
-      <button class="button">관리자 메뉴</button>
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-      <!-- Header -->
-      <div class="header">
-        <h1>Posco Automated Data Analysis</h1>
-        <p v-if="location == ''">지역을 선택해 주십시오</p>
-        <p v-else-if="location == '포항' || '광양'">
-          현재 선택한 지역은 <span style="font-weight: bold">{{ location }} </span>입니다.
-        </p>
-      </div>
-
-      <!-- Main Content -->
-      <div class="main">
-        <div class="userChat">
-          <div v-if="inquiries.lengh === 0">무엇이든 물어보세요!</div>
-          <div v-else>
-            <div class="chatContainer" v-for="(items, index) in inquiries" :key="index">
-              <div class="speech-bubble">{{ items }}</div>
-              <img class="user-icon" src="../assets/user.png" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="footer">
-        <input
-          type="text"
-          v-model="inquiry"
-          @keyup.enter="inputInquiry"
-          placeholder="무엇을 도와드릴까요?"
-        />
-        <button class="button" @click="inputInquiry">전송</button>
-      </div>
-    </div>
-  </div>
-</template>
-<script>
-import axios from 'axios'
-axios.get()
-
-export default {
-  name: 'PADA',
-  data() {
-    return {
-      location: '',
-      inquiries: [], // 입력된 값 리스트
-      inquiry: '', // 입력된 값
-    }
-  },
-  methods: {
-    //라디오 버튼 지역 선택
-    logSelection() {
-      console.log('지역', this.location)
-    },
-
-    //질문 입력 처리
-    inputInquiry() {
-      if (this.location.trim() == '') {
-        alert('지역을 선택해주십시오.')
-      } else if (this.inquiry.trim() !== '') {
-        console.log('질문:', this.inquiry)
-        this.inquiries.push(this.inquiry)
-        console.log('리스트에 잘 들어감?', this.inquiries.length)
-        this.inquiry = ''
-      } else {
-        alert('질문을 해 주시기 바랍니다.')
-      }
-    },
-  },
-}
-</script>
-<style scoped>
 body {
   margin: 0 30px;
   font-family: Arial, sans-serif;
@@ -276,11 +156,11 @@ body {
 .button:hover {
   background-color: #003765;
 }
+
 /* 채팅장 스타일 */
 .speech-bubble {
   display: flex;
   align-items: center;
-  justify-content: right;
   background-color: #2a81b9; /* 파란색 배경 */
   color: white; /* 텍스트 색상 */
   font-size: 14px;
@@ -289,8 +169,6 @@ body {
   border-radius: 10px;
   position: relative;
   width: max-content;
-  margin-left: auto;
-  margin-bottom: 3px;
 }
 
 .speech-bubble:after {
@@ -318,8 +196,7 @@ body {
   font-weight: bold;
 }
 
-.chatContainer {
+.container {
   display: flex;
   align-items: center;
 }
-</style>
