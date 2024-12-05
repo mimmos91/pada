@@ -163,7 +163,8 @@ body {
   border: 15px solid #1f497d;
   border-radius: 30px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 0 10px;
   /* font-size: calc(1rem+0.5vm); */
 }
@@ -271,6 +272,11 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0px;
 }
 
 .button:hover {
