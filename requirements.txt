@@ -1,0 +1,15 @@
+flask
+flask_cors
+openai
+matplotlib
+pandas
+python-dotenv
+langchain
+langchain_community
+langchain_experimental
+langchain_openai
+numpy
+langchain_teddynote
+torch
+transformers
+seaborn
