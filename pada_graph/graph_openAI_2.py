@@ -12,6 +12,13 @@ import pandas as pd
 import json
 import seaborn as sns
 
+"""
+데이터 분석 LLM
+작성자: 김유경
+작성일: 2024.12.08
+버전 : 1
+"""
+
 #.env파일로드
 load_dotenv()
 #키 가지고 오기
