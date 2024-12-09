@@ -1,6 +1,16 @@
 #프론트와 연계 설정
 #flask와 flask-cors 설치
 #CORS요청 허용 설정
+
+"""
+python flask 서버
+작성자: 김유경
+작성일: 2024.12.06
+버전 : 2 
+수정내용: 데이터 받는 곳 변경
+"""
+
+
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 from graph import process_data
@@ -16,33 +26,25 @@ def home():
 
 @app.route('/api/graph',method=['POST'])
 def receive_data():
-    #vue.js에서 보낸 데이터 받기
     data =request.get_json()
     user_request = data.get("user_request")
-    table_data=data.get("table_data")
+    file_path=data.get("file_path") # 데이터 경로(URL)
 
-    #마크다운 형식으로 받을 경우
-    markdown = data.get('markdown') #vue에서 보낸 데이터 키  
-    if not markdown or not user_request or not table_data:
-        return jsonify({'error':'No Markdown data provided'}),400
+    if not user_request or not file_path:
+        return jsonify({'error':'No data provided'}),400
     
     try:
-        result = process_data(markdown)
         result=process_data(data)
         #그래프 요청 처리
-        graph_request(user_request,table_data)
+        graph_request(user_request,file_path)
          #.graph.py로 데이터 전달.
-        result=process_data(user_request,table_data)
+        result=process_data(user_request,file_path)
 
         return jsonify({'result':result})
     except Exception as e:
         return jsonify({'error':str(e)}), 500
     
    
-
-
-    
-
 if __name__=='__main__':
     app.run(debug=True)
 

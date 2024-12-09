@@ -34,13 +34,14 @@ llm = ChatOpenAI(
 )
 
 #client로 받은 data 가지고 오기
-def graph_request(user_request,table_data):
+def graph_request(user_request,file_path):
 
     #테이블 데이터 전처리: 결측값 0으로 처리
     # df=pd.DataFrame(table_data)
-    df=pd.read_csv('./output.csv') #test용 csv 파일
+    # df=pd.read_csv('./output.csv') #test용 csv 파일
+    df=pd.read_csv(file_path)
     df.fillna(0, inplace=True)
-    user_request="숫자형으로 된 모든 수치의 평균을 나타내는 바 그래프 그릴 방법을 추천해줘."
+    # user_request="숫자형으로 된 모든 수치의 평균을 나타내는 바 그래프 그릴 방법을 추천해줘."
 
     prompt = (
     f"You are a professional data analyst. Your task is to analyze the given data and user's request "
