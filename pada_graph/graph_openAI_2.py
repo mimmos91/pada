@@ -50,6 +50,7 @@ def graph_request(user_request,file_path):
     f"2. The x-axis labels (column names to use for the x-axis). If multiple columns are suitable, include all of them as a list.\n"
     f"3. The y-axis label (column name to use for the y-axis).\n\n"
     f"4. A suitable title for the graph written in **Korean (한글)**.\n\n"
+    f"5. Provide the reason for recommending this type of graph, considering the data and user request."
     f"User request: '{user_request}'\n\n"
     f"Here is the preview of the data:\n{df.head().to_string()}\n\n"
     f"Respond with a JSON object containing the following keys: "
@@ -59,6 +60,7 @@ def graph_request(user_request,file_path):
     f"  \"x_labels\": [\"Column1\", \"Column2\"],\n"
     f"  \"y_label\": \"Column2\"\n"
     f"  \"title\": \"그래프 제목 예시 (한글)\"\n"
+    f" \"reason\": Bar chart는 카테고리별로 데이터를 비교하기 적합하며, 주어진 데이터에서 'Column1'과 'Column2'는 서로 연관성이 있어 보입니다."
     f"}}\n"
 )
     response = llm.invoke(prompt)
@@ -66,7 +68,7 @@ def graph_request(user_request,file_path):
     print("\n response content data \n ", response.content)
     return data
     
-def graphVisualization(data)->None:
+def graphVisualization(data ):
     data = json.loads(data)
     df=pd.read_csv('./output.csv')
     # 시각화에 사용할 데이터 계산 (선택한 열의 평균)
@@ -106,13 +108,16 @@ def graphVisualization(data)->None:
     plt.xticks(rotation=90)
     plt.tight_layout()
     plt.show()
+    # plt.savefig('file_path')
+    return 
+
     
-#test
-if __name__ == "__main__":
-    with open("./test.json", "r", encoding="utf-8") as file:
-        data = json.load(file)
-    graph_info = graph_request(data["user_request"], data["table_data"])
-    graphVisualization(graph_info)
+# #test
+# if __name__ == "__main__":
+#     with open("./test.json", "r", encoding="utf-8") as file:
+#         data = json.load(file)
+#     graph_info = graph_request(data["user_request"], data["table_data"])
+#     graphVisualization(graph_info)
 
     
 

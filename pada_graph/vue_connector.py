@@ -24,7 +24,7 @@ def home():
     return "Hello, Flask"
 #http://127.0.0.1:5000/
 
-@app.route('/api/graph',method=['POST'])
+@app.route('/api/graph',methods=['POST'])
 def receive_data():
     data =request.get_json()
     user_request = data.get("user_request")
@@ -46,6 +46,6 @@ def receive_data():
     
    
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 
 
