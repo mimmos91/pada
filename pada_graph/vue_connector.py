@@ -24,25 +24,25 @@ def home():
     return "Hello, Flask"
 #http://127.0.0.1:5000/
 
-@app.route('/api/graph',methods=['POST'])
-def receive_data():
-    data =request.get_json()
-    user_request = data.get("user_request")
-    file_path=data.get("file_path") # 데이터 경로(URL)
+# @app.route('/api/graph',methods=['POST'])
+# def receive_data():
+#     data =request.get_json() #messageId, message, data
+#     user_request = data.get("user_request")
+#     file_path=data.get("file_path") # 데이터 경로(URL)
 
-    if not user_request or not file_path:
-        return jsonify({'error':'No data provided'}),400
+#     if not user_request or not file_path:
+#         return jsonify({'error':'No data provided'}),400
     
-    try:
-        result=process_data(data)
-        #그래프 요청 처리
-        graph_request(user_request,file_path)
-         #.graph.py로 데이터 전달.
-        result=process_data(user_request,file_path)
+#     try:
+#         result=process_data(data)
+#         #그래프 요청 처리
+#         graph_request(user_request,file_path)
+#          #.graph.py로 데이터 전달.
+#         result=process_data(user_request,file_path)
 
-        return jsonify({'result':result})
-    except Exception as e:
-        return jsonify({'error':str(e)}), 500
+#         return jsonify({'result':result})
+#     except Exception as e:
+#         return jsonify({'error':str(e)}), 500
     
    
 if __name__=='__main__':

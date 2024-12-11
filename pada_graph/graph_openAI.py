@@ -83,3 +83,13 @@ if __name__ == "__main__":
     graph_request(data["user_request"], data["table_data"])
 
 
+
+
+
+    # # 평균 계산 함수
+    # def calculate_average(data):
+    #     return data["y_values"].mean()
+
+    # # 평균 값 계산
+    # overall_average = calculate_average(data)
+    # print(f"Overall Average: {overall_average:.2f}")
